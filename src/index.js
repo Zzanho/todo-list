@@ -1,6 +1,9 @@
+import { DOM_BODY } from "./body";
+import { DOM_HEADER } from "./header";
 
-import pageLoad from './pageLoad';
+document.addEventListener("DOMContentLoaded", () => {
+    DOM_HEADER();
+    DOM_BODY();
 
+});
 
-//Load page
-pageLoad();
