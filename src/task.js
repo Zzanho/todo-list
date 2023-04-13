@@ -1,4 +1,4 @@
-export class Task {
+export class Tasks {
     constructor(title, description, dueDate, priority, notes, checklist) {
         this.title = title;
         this.description = description;
