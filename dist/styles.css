@@ -168,6 +168,58 @@ main {
 
 /* projects */
 
+#projects-list {
+    display: flex;
+    font-size: 2rem;
+}
+
+#projects-list>div {
+    display: flex;
+    flex-direction: column;
+}
+
+#project-form-container {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 2rem;
+}
+
+
+
+#project-form {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+#top {
+    display: flex;
+    gap: .5rem;
+}
+
+#project-form>button {
+    font-size: 5rem;
+    width: auto;
+    height: auto;
+
+
+}
+
+/* task container*/
+
+.task-container {
+    display: flex;
+}
+
+
+/* task form*/
+
+#task-form {
+    display: none;
+    flex-direction: column;
+
+}
 
 
 @media screen and (min-width: 900px) {

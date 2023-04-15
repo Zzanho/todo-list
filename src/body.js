@@ -6,6 +6,7 @@ export class Body {
         this.projects = [];
         this.currentProject = null;
         this.taskFormVisible = false;
+        this.projectFormVisible = false;
     }
 
     createProject(title) {
@@ -39,6 +40,11 @@ export class Body {
         this.renderTaskForm();
     }
 
+    toggleProjectForm() {
+        this.taskProjectVisible = !this.taskProjectVisible;
+        this.renderProjectForm();
+    }
+
     renderTasks() {
         const taskContainer = document.getElementById('task-container');
         taskContainer.innerHTML = '';
@@ -59,14 +65,26 @@ export class Body {
         });
     }
 
+
     renderTaskForm() {
         const taskContainer = document.getElementById('task-container');
         const taskForm = document.getElementById('task-form');
         if (this.taskFormVisible) {
-            taskForm.style.display = 'block';
+            taskForm.style.display = 'flex';
             taskContainer.appendChild(taskForm);
         } else {
             taskForm.style.display = 'none';
+        }
+    }
+
+    renderProjectForm() {
+        const projectContainer = document.getElementById('project-form-container');
+        const menu = document.getElementById('mySidebar');
+        if (this.taskProjectVisible) {
+            projectContainer.style.display = 'flex';
+            menu.appendChild(projectForm);
+        } else {
+            projectContainer.style.display = 'none';
         }
     }
 
@@ -77,38 +95,11 @@ export class Body {
         const toggleTaskFormBtn = document.getElementById('add-task-form-btn');
         toggleTaskFormBtn.addEventListener('click', () => {
             // Check if task form has already been created
-            const taskForm = document.getElementById('task-form');
+            const taskForm = document.getElementById('task-form-container');
             if (!taskForm) {
                 // Create task form
                 const taskFormContainer = document.getElementById('task-form-container');
-                const taskFormTemplate = `
-              <form id="task-form">
-                <h3>Add Task</h3>
-                <div class="form-group">
-                  <label for="task-title-input">Title:</label>
-                  <input type="text" id="task-title-input">
-                </div>
-                <div class="form-group">
-                  <label for="task-description-input">Description:</label>
-                  <textarea id="task-description-input"></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="task-due-date-input">Due Date:</label>
-                  <input type="date" id="task-due-date-input">
-                </div>
-                <div class="form-group">
-                  <label for="task-priority-input">Priority:</label>
-                  <select id="task-priority-input">
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <button type="button" id="add-task-btn">Add Task</button>
-                </div>
-              </form>
-             `;
+
                 taskFormContainer.insertAdjacentHTML('beforeend', taskFormTemplate);
 
                 // Add event listener to add task button
@@ -122,7 +113,7 @@ export class Body {
                     const taskDescription = taskDescriptionInput.value;
                     const taskDueDate = taskDueDateInput.value;
                     const taskPriority = taskPriorityInput.value;
-                    if (taskTitle && taskDueDate && taskPriority) {
+                    if (taskTitle && taskDueDate && taskPriority && projects) {
                         this.createTask(taskTitle, taskDescription, taskDueDate, taskPriority);
                         taskTitleInput.value = '';
                         taskDescriptionInput.value = '';
@@ -136,6 +127,14 @@ export class Body {
             // Toggle task form visibility
             this.toggleTaskForm();
         });
+
+
+        const toggleProjectList = document.getElementById('create-new-project');
+        toggleProjectList.addEventListener('click', () => {
+            this.toggleProjectForm();
+
+        }
+        );
     }
 
     initializeUI() {

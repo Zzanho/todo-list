@@ -27,55 +27,60 @@ export const DOM_HEADER = () => {
       <button class="btn" id="create-new-project">
         <i class="fas fa-plus"></i>Create new project
       </button>
+      <div id="project-form-container"></div>
       <div id="projects-list"></div>
     </section>
     <section class="task-container">
+      <div id="task-form-container"></div>
       <div class="cards" id="cards"></div>
     </section>
   `;
   container.appendChild(main);
 
   // Create project form
+  const projectFormContainer = document.getElementById('project-form-container');
   const projectForm = document.createElement('div');
-  projectForm.id = 'project-form';
+  projectForm.classList = 'project-form';
   projectForm.innerHTML = `
     <h2>Create New Project</h2>
     <form id="project-form">
+     <div id="top">
       <label for="project-title">Title</label>
       <input type="text" id="project-title" name="project-title" required>
-      <label for="project-description">Description</label>
-      <textarea id="project-description" name="project-description"></textarea>
+     </div>
+     <div id="bot">
       <button type="submit">Create Project</button>
       <button type="button" id="cancel-project-form">Cancel</button>
+     </div>
     </form>
   `;
-  container.appendChild(projectForm);
+  projectFormContainer.appendChild(projectForm);
 
   // Create task form
-  const taskForm = document.createElement('div');
-  taskForm.id = 'task-form';
-  taskForm.innerHTML = `
-    <h2>Add New Task</h2>
-    <form id="task-form">
-      <label for="task-title">Title</label>
-      <input type="text" id="task-title" name="task-title" required>
-      <label for="task-description">Description</label>
-      <textarea id="task-description" name="task-description"></textarea>
-      <label for="task-due-date">Due Date</label>
-      <input type="date" id="task-due-date" name="task-due-date">
-      <label for="task-priority">Priority</label>
-      <select id="task-priority" name="task-priority">
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </select>
-      <label for="task-project">Project</label>
-      <select id="task-project" name="task-project"></select>
-      <button type="submit">Add Task</button>
-      <button type="button" id="cancel-task-form">Cancel</button>
-    </form>
-  `;
-  container.appendChild(taskForm);
+  const taskFormContainer = document.getElementById('task-form-container');
+
+  taskFormContainer.innerHTML = `
+  <form id="task-form">
+  <h2>Add New Task</h2>
+    <label for="task-title">Title</label>
+    <input type="text" id="task-title" name="task-title" required>
+    <label for="task-description">Description</label>
+    <textarea id="task-description" name="task-description"></textarea>
+    <label for="task-due-date">Due Date</label>
+    <input type="date" id="task-due-date" name="task-due-date">
+    <label for="task-priority">Priority</label>
+    <select id="task-priority" name="task-priority">
+      <option value="high" style="background-color: red;">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+    <label for="task-project">Project</label>
+    <select id="task-project" name="task-project"></select>
+    <button type="submit" id="add-task-btn">Add Task</button>
+    <button type="button" id="cancel-task-form">Cancel</button>
+  </form>
+`;
+
 
   // Create project item
   const createProjectItem = (project) => {
